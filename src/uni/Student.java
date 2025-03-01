@@ -10,7 +10,7 @@ public class Student {
 
     public int personID;
 
-    //Year each student got it
+    //The year each student got it
     public final int entranceYear;
 
     //The major in which the student is enrolled
@@ -22,11 +22,33 @@ public class Student {
     public Student(int personID, int entranceYear, int majorID) {
         this.personID = personID;
         this.entranceYear = entranceYear;
-        studentList = new ArrayList<>();
-        studentList.add(new Student(personID, entranceYear, majorID));
-        id = studentList.size();
+        this.majorID = majorID;
+
+        // Ensure studentList is initialized
+        if (studentList == null) {
+            studentList = new ArrayList<>();
+        }
+
+        // Find the corresponding major
+        Major major = Major.findById(majorID);
+        if (major != null) {
+            if (major.numberOfStudents >= major.capacity) {
+                System.out.println("Error: Cannot add student. Major " + major.name + " is full.");
+                return;
+            }
+            major.numberOfStudents++;
+        } else {
+            System.out.println("Warning: Major not found for student.");
+        }
+
+        // Assign ID before adding to the list
+        this.id = studentList.size() + 1;
+        studentList.add(this);
+
+        // Generate student ID
         setStudentCode();
     }
+
 
 
     //Finding students via their ID
@@ -42,7 +64,13 @@ public class Student {
 
     //Setting student ID for each object
     public void setStudentCode() {
-        studentID = String.valueOf(entranceYear) + String.valueOf(majorID) + String.valueOf(personID);
+        Major major = Major.findById(majorID);
+        if (major != null) {
+            int studentOrder = major.numberOfStudents;
+            studentID = String.format("%d%02d%03d", entranceYear, majorID, studentOrder);
+        } else {
+            System.out.println("Error: Major not found.");
+            studentID = String.format("%d%02d%03d", entranceYear, 0, 0);
+        }
     }
-
 }

@@ -30,7 +30,6 @@ public class Transcript {
             return;
         }
         transcript.put(presentedCourseID, grade);
-        System.out.println("Grade set to " + grade + " for course ID " + presentedCourseID);
     }
 
 
@@ -41,12 +40,16 @@ public class Transcript {
             System.out.println("Student not found.");
             return;
         }
+
         Person person = Person.findByID(student.personID);
         if (person == null) {
             System.out.println("Student personal details not found.");
             return;
         }
-        System.out.println("Student Name: " + person.name + " (ID: " + studentID + ")");
+
+        System.out.print("\nStudent Name: " + person.name + " (Student Code: " + student.studentID + ")\n");
+
+        // Print transcript
         System.out.println("Transcript:");
         for (Integer presentedCourseID : transcript.keySet()) {
             PresentedCourse presentedCourse = PresentedCourse.findById(presentedCourseID);
