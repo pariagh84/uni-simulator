@@ -20,12 +20,13 @@ public class Course {
         this.units = units;
 
         // Assign ID before adding to the list
-        this.id = courseList.size() + 1;
         courseList.add(this);
+        this.id = courseList.size();
+
     }
 
     // Finding courses via their ID
-    public static Course findById(int ID) {
+    public static Course findByID(int ID) {
         for (Course course : courseList) {
             if (course.id == ID) {
                 return course;

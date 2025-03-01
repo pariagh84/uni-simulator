@@ -23,8 +23,9 @@ public class Major {
         this.capacity = capacity;
 
         // Assign ID before adding to the list
-        this.id = majorList.size() + 1;
         majorList.add(this);
+        this.id = majorList.size();
+
     }
 
     // Finding a major via its ID

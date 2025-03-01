@@ -20,7 +20,7 @@ public class Transcript {
 
     // Setting grade for a student in a presented course
     public void setGrade(int presentedCourseID, double grade) {
-        PresentedCourse presentedCourse = PresentedCourse.findById(presentedCourseID);
+        PresentedCourse presentedCourse = PresentedCourse.findByID(presentedCourseID);
         if (presentedCourse == null || !presentedCourse.studentIds.contains(studentID)) {
             System.out.println("Student ID " + studentID + " is not enrolled in the course.");
             return;
@@ -52,9 +52,9 @@ public class Transcript {
         // Print transcript
         System.out.println("Transcript:");
         for (Integer presentedCourseID : transcript.keySet()) {
-            PresentedCourse presentedCourse = PresentedCourse.findById(presentedCourseID);
+            PresentedCourse presentedCourse = PresentedCourse.findByID(presentedCourseID);
             if (presentedCourse != null) {
-                Course course = Course.findById(presentedCourse.courseID);
+                Course course = Course.findByID(presentedCourse.courseID);
                 if (course != null) {
                     System.out.println("Course ID: " + presentedCourseID + " - " + course.title + ", Grade: " + transcript.get(presentedCourseID));
                 }
@@ -68,9 +68,9 @@ public class Transcript {
         double totalGradePoints = 0;
         int totalUnits = 0;
         for (Integer presentedCourseID : transcript.keySet()) {
-            PresentedCourse presentedCourse = PresentedCourse.findById(presentedCourseID);
+            PresentedCourse presentedCourse = PresentedCourse.findByID(presentedCourseID);
             if (presentedCourse != null) {
-                Course course = Course.findById(presentedCourse.courseID);
+                Course course = Course.findByID(presentedCourse.courseID);
                 if (course != null) {
                     totalGradePoints += transcript.get(presentedCourseID) * course.units;
                     totalUnits += course.units;

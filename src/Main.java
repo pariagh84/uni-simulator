@@ -45,7 +45,7 @@ public class Main {
         PresentedCourse presentedCourse3 = new PresentedCourse(course3.id, professor2.id, 30);
 
         // Enrolling students in courses
-        PresentedCourse foundPc1 = PresentedCourse.findById(presentedCourse1.id);
+        PresentedCourse foundPc1 = PresentedCourse.findByID(presentedCourse1.id);
         if (foundPc1 != null) {
             foundPc1.addStudent(student1.id);
             foundPc1.addStudent(student2.id);
@@ -53,14 +53,14 @@ public class Main {
             System.out.println("Error: Presented Course 1 not found.");
         }
 
-        PresentedCourse foundPc2 = PresentedCourse.findById(presentedCourse2.id);
+        PresentedCourse foundPc2 = PresentedCourse.findByID(presentedCourse2.id);
         if (foundPc2 != null) {
             foundPc2.addStudent(student1.id);
         } else {
             System.out.println("Error: Presented Course 2 not found.");
         }
 
-        PresentedCourse foundPc3 = PresentedCourse.findById(presentedCourse3.id);
+        PresentedCourse foundPc3 = PresentedCourse.findByID(presentedCourse3.id);
         if (foundPc3 != null) {
             foundPc3.addStudent(student3.id);
         } else {

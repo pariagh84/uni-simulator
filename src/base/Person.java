@@ -20,8 +20,9 @@ public class Person {
         this.nationalID = nationalID;
 
         // Assign ID before adding to the list
-        this.id = personList.size() + 1;
         personList.add(this);
+        this.id = personList.size();
+
     }
 
     // Finding persons via their ID

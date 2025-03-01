@@ -28,12 +28,13 @@ public class PresentedCourse {
         this.studentIds = new ArrayList<>();
 
         // Assign ID before adding to the list
-        this.id = presentedCourseList.size() + 1;
         presentedCourseList.add(this);
+        this.id = presentedCourseList.size();
+
     }
 
     // Finding presented courses via their ID
-    public static PresentedCourse findById(int ID) {
+    public static PresentedCourse findByID(int ID) {
         for (PresentedCourse presentedCourse : presentedCourseList) {
             if (presentedCourse.id == ID) {
                 return presentedCourse;

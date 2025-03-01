@@ -19,12 +19,13 @@ public class Professor {
         this.majorID = majorID;
 
         // Assign ID before adding to the list
-        this.id = professorList.size() + 1;
         professorList.add(this);
+        this.id = professorList.size();
+
     }
 
     // Finding professors via their ID
-    public static Professor findById(int ID) {
+    public static Professor findByID(int ID) {
         for (Professor professor : professorList) {
             if (professor.id == ID) {
                 return professor;

@@ -1,6 +1,7 @@
 package uni;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Student {
     public int id;
@@ -17,6 +18,11 @@ public class Student {
     public int majorID;
 
     public String studentID;
+
+    //To make difference between different majors and entry year
+    public static HashMap<String, Integer> studentCountPerYearMajor = new HashMap<>();
+
+
 
     //Constructor for initializing each object
     public Student(int personID, int entranceYear, int majorID) {
@@ -42,8 +48,8 @@ public class Student {
         }
 
         // Assign ID before adding to the list
-        this.id = studentList.size() + 1;
         studentList.add(this);
+        this.id = studentList.size();
 
         // Generate student ID
         setStudentCode();
@@ -62,15 +68,28 @@ public class Student {
     }
 
 
-    //Setting student ID for each object
+    //Setting student code for each object
     public void setStudentCode() {
         Major major = Major.findById(majorID);
+
+        // Use a composite key of (entranceYear, majorID) to track student order uniquely per year & major
+        String key = entranceYear + "-" + majorID;
+
+        // Initialize counter if it's a new combination of entranceYear and majorID
+        if (!Student.studentCountPerYearMajor.containsKey(key)) {
+            Student.studentCountPerYearMajor.put(key, 1);
+        }
+
+        int studentOrder = Student.studentCountPerYearMajor.get(key);
+
         if (major != null) {
-            int studentOrder = major.numberOfStudents;
             studentID = String.format("%d%02d%03d", entranceYear, majorID, studentOrder);
         } else {
             System.out.println("Error: Major not found.");
-            studentID = String.format("%d%02d%03d", entranceYear, 0, 0);
+            studentID = String.format("%d%02d%03d", entranceYear, 0, studentOrder);
         }
+
+        // Increment count for the next student in the same entranceYear and major
+        Student.studentCountPerYearMajor.put(key, studentOrder + 1);
     }
 }
