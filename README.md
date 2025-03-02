@@ -65,5 +65,5 @@ Student Name: Paria Gharakhani (Student Code: 40301001)
 Transcript:
 Course ID: 1 - Foundation of Mathematics, Grade: 18.5
 Course ID: 2 - Advanced Programming, Grade: 17.0
-GPA: 17.642857142857142
+GPA: 17.64
 ```
