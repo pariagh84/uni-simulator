@@ -36,7 +36,7 @@ public class Student {
         }
 
         // Find the corresponding major
-        Major major = Major.findById(majorID);
+        Major major = Major.findByID(majorID);
         if (major != null) {
             if (major.numberOfStudents >= major.capacity) {
                 System.out.println("Error: Cannot add student. Major " + major.name + " is full.");
@@ -70,7 +70,7 @@ public class Student {
 
     //Setting student code for each object
     public void setStudentCode() {
-        Major major = Major.findById(majorID);
+        Major major = Major.findByID(majorID);
 
         // Use a composite key of (entranceYear, majorID) to track student order uniquely per year & major
         String key = entranceYear + "-" + majorID;

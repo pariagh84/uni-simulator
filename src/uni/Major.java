@@ -29,7 +29,7 @@ public class Major {
     }
 
     // Finding a major via its ID
-    public static Major findById(int id) {
+    public static Major findByID(int id) {
         for (Major major : majorList) {
             if (major.id == id) {
                 return major;
