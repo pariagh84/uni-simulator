@@ -1,7 +1,6 @@
 package uni;
 
 import base.Person;
-
 import java.util.HashMap;
 
 public class Transcript {
@@ -77,6 +76,7 @@ public class Transcript {
                 }
             }
         }
-        return totalUnits == 0 ? 0.0 : totalGradePoints / totalUnits;
+        double gpa = totalUnits == 0 ? 0.0 : totalGradePoints / totalUnits;
+        return Double.parseDouble(String.format("%.2f", gpa));
     }
 }
